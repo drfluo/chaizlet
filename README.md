@@ -43,6 +43,7 @@ vi myapp.py
 --
 from app import app
 --
+python app/init_db.py // AVANT TOUTE UTILISATION  et no such user table
 
 export FLASK_APP=myapp.py
 flask run
