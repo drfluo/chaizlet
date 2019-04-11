@@ -64,3 +64,23 @@ source .env/bin/activate			# nos mets dans l'environnement privé
 
 
 ```
+### crée une nouvelle page
+```
+virtualenv. env				# new pc
+source .env/bin/activate		# new pc
+pip install flask			# new pc
+
+
+python app/init_db.py
+flask run 
+
+vi app/route.py
+
+
+
+
+
+
+
+
+```
