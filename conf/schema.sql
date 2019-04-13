@@ -17,4 +17,4 @@ INSERT INTO user (username, passwd_hash, first_name, last_name, email)
 	VALUES ("LAURELINE", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "POLLI", "lpolli2001@gmail.com");
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email) 
-	VALUES ("DAMIEN", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "RUPP", "drupp2001@gmail.com");
+	VALUES ("DAMIEN.R", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "RUPP", "drupp2001@gmail.com");
