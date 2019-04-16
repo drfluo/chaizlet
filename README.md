@@ -1,4 +1,4 @@
-#  en@destael.educanet2.ch ## Useful Commands
+### Useful Commands
 ```
 # https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
 
@@ -43,7 +43,8 @@ vi myapp.py
 --
 from app import app
 --
-python app/init_db.py // AVANT TOUTE UTILISATION  et no such user table
+rm database.db			// AVANT TOUTE UTILISATION 
+python app/init_db.py 	// AVANT TOUTE UTILISATION et no such user table
 
 export FLASK_APP=myapp.py
 flask run
@@ -83,4 +84,8 @@ vi app/route.py
 JE L'AI MODIFIÉ !!!
 
 
+```
+### Heroku
+```
+comment le run sur windows
 ```
