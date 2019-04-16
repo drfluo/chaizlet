@@ -97,7 +97,7 @@ def ex1():
         },
         {
             'author': {'username': 'Damien'},
-            'body': 'Tu vois Laureline, y'en a qui travaille :)'
+            'body': 'Tu vois Laureline, y en a qui travaille :)'
         }
     ]
     return render_template('ex1.html', title=title, user=user, posts=posts)
