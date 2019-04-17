@@ -101,3 +101,22 @@ def ex1():
         }
     ]
     return render_template('ex1.html', title=title, user=user, posts=posts)
+    
+
+@app.route('/ex2')
+def ex2():
+	title = "My App - Example 2"
+	user ={'username': 'Test'}
+	messages = [
+		{
+			'parleur': {'username': 'Laureline'},
+			'mot': 'On galère avec heroku x)'
+		}
+	
+	
+	]
+	return render_template('ex2.htlm', title=title, user=user, messages=messages)
+	
+	
+	
+	

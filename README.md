@@ -85,7 +85,32 @@ JE L'AI MODIFIÉ !!!
 
 
 ```
-### Heroku
+### Heroku comment le run sur windows
 ```
-comment le run sur windows
+
+download Heroku CIL en WIndows 64
+
+installé Heroku CIL
+
+ouvert cmd
+
+$ heroku login 			# ouvre une fenetre firefox et log in
+
+$ heroku git clone https://github.com/drfluo/chaizlet.git
+
+$ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+
+$ get-pip.py --user
+
+$ cd C:\Users\drupp\git\chaizlet
+
+$ 
+
+
+
+
+
+
 ```
+
+
