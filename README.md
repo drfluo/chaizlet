@@ -106,11 +106,13 @@ $ cd C:\Users\drupp\git\chaizlet
 
 $ 
 
+```
 
+### unchecked update
+```
 
-
+- routes.py ('/ex2')
+- app/templates/ex2.html
 
 
 ```
-
-
