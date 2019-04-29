@@ -113,14 +113,14 @@ def ex2():
 	messages = [
 		{
 			'parleur': {'username': 'Laureline'},
-			'mot': 'On galère avec heroku x)'
+			'mot': 'On galere avec heroku x)'
 		},
 		{
 			'parleur': {'username': 'Damien'},
 			'mot': 'C est impossible ... :('
 		}
 	]
-	return render_template('ex2.htlm', title=title, user=user, messages=messages)
+	return render_template('ex2.html', title=title, user=user, messages=messages)
 	
 	
 	
