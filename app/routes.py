@@ -123,5 +123,30 @@ def ex2():
 	return render_template('ex2.html', title=title, user=user, messages=messages)
 	
 	
+##########################################################################################################
+# Test de la galere'
+
+'''
+
+@app.route('/rmuser', methods=['POST', 'GET'])
+def rm_user():
+    title="MyApp - Remove a user"
+    error = None
+    msg = None
+    if session['username']:
+        if request.method=='GET':
+		
+
+
+            if firstname is None or lastname is None or email is None or username is None or passwd is None:
+                error = 'All fields are mandatory.'
+            else:
+                passwd_hash = hash_sha1(passwd)
+                db = get_db()
+                db.add_user(username, passwd_hash, firstname, lastname, email)
+                msg = 'User was successfully added!'
+        return render_template('adduser.html', title=title, msg=msg, error=error)
+    else:
+        return redirect(url_for('login'))
 	
-	
+'''	
