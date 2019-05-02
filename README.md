@@ -106,13 +106,6 @@ $ cd C:\Users\drupp\git\chaizlet
 
 $ 
 
-```
+'''
 
-### unchecked update
-```
-
-- routes.py ('/ex2')
-- app/templates/ex2.html
-- base.html (ex2) l.12
-
-```
+https://bitbucket.org/jimbotonic/m3/src/master

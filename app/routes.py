@@ -42,12 +42,13 @@ def add_user():
             email = request.form['email']
             username = request.form['username']
             passwd = request.form['password']
-            if firstname is None or lastname is None or email is None or username is None or passwd is None:
+	    role_id = request.form['role_id']
+            if firstname is None or lastname is None or email is None or username is None or passwd is None or role_id is None:
                 error = 'All fields are mandatory.'
             else:
                 passwd_hash = hash_sha1(passwd) 
                 db = get_db()
-                db.add_user(username, passwd_hash, firstname, lastname, email)
+                db.add_user(username, passwd_hash, firstname, lastname, email, role)
                 msg = 'User was successfully added!'
         return render_template('adduser.html', title=title, msg=msg, error=error)
     else:
@@ -121,32 +122,24 @@ def ex2():
 		}
 	]
 	return render_template('ex2.html', title=title, user=user, messages=messages)
-	
-	
-##########################################################################################################
-# Test de la galere'
 
-'''
-
-@app.route('/rmuser', methods=['POST', 'GET'])
-def rm_user():
-    title="MyApp - Remove a user"
+@app.route('/addclass', methods=['POST', 'GET'])
+def add_class():
+    title="MyApp - Add a new class"
     error = None
     msg = None
     if session['username']:
-        if request.method=='GET':
-		
-
-
-            if firstname is None or lastname is None or email is None or username is None or passwd is None:
-                error = 'All fields are mandatory.'
+        if request.method=='POST':
+            class_name = request.form['classname']
+            language_foreign_id = request.form['languageforeignid']
+            language_origin_id = request.form['languageoriginid']
+            if class_name is None or language_foreign_id is None or language_origin_id is None:
+               error = 'All fields are mandatory.'
             else:
-                passwd_hash = hash_sha1(passwd)
                 db = get_db()
-                db.add_user(username, passwd_hash, firstname, lastname, email)
+                db.add_class(class_name, language_foreign_id, language_origin_id)
                 msg = 'User was successfully added!'
-        return render_template('adduser.html', title=title, msg=msg, error=error)
+        return render_template('addclass.html', title=title, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
 	
-'''	

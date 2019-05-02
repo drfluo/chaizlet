@@ -64,8 +64,14 @@ class db_handler:
         rd = self.query('SELECT passwd_hash FROM user WHERE username=?', (username,), one=True)
         return rd['passwd_hash'] if rd else None
 
-    def add_user(self, username, passwd_hash, firstname, lastname, email):
+    def add_user(self, username, passwd_hash, firstname, lastname, email, role_id):
         """
             Add a new user
         """
-        self.edit('INSERT INTO user (username, passwd_hash, first_name, last_name, email) VALUES (?,?,?,?,?)', (username, passwd_hash, firstname, lastname, email,))
+        self.edit('INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) VALUES (?,?,?,?,?,?)', (username, passwd_hash, firstname, lastname, email, role_id))
+    
+    def add_class(self, class_user, language_foreign_id, language_origin_id):
+        """
+            Add a new class
+        """
+        self.edit('INSERT INTO class (class_user, language_foreign_id, language_origin_id) VALUES (?,?,?)', (class_user, language_foreign_id, language_origin_id)) 

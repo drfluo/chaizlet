@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="container">
+                <h1>Add CLASS</h1>
+                <br>
+                <form action="" method="post">
+                        <div class="form-group">
+                        <input type="text" placeholder="nom de ta classe" name="classname" value="{{ request.form.classname }}">
+                        </div>
+                        <div class="form-group">
+                        <input type="number" placeholder="langue de depart" name="languageoriginid" value="{{ request.form.languageoriginid }}">
+                        </div>
+			<div class="form-group">
+                        <input type="number" placeholder="langue d arrivee" name="languageforeignid" value="{{ request.form.languageforeignid }}">
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add CLASS</button>
+                </form>
+                {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}</p>
+                {% endif %}
+                {% if msg %}
+                <p class="msg">{{ msg }}</p>
+                {% endif %}
+        </div>
+{% endblock %}
+
