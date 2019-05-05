@@ -48,7 +48,7 @@ def add_user():
             else:
                 passwd_hash = hash_sha1(passwd) 
                 db = get_db()
-                db.add_user(username, passwd_hash, firstname, lastname, email, role)
+                db.add_user(username, passwd_hash, firstname, lastname, email, role_id)
                 msg = 'User was successfully added!'
         return render_template('adduser.html', title=title, msg=msg, error=error)
     else:
