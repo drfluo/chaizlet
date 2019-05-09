@@ -4,11 +4,11 @@
 -- tables
 -- Table: class
 CREATE TABLE class (
-   --  id int NOT NULL,
+    id int NOT NULL,
     class_name varchar(64) NOT NULL,
     language_foreign_id int NOT NULL,
-    language_origin_id int NOT NULL,
-    CONSTRAINT class_pk PRIMARY KEY (id)
+    language_origin_id int NOT NULL
+    -- CONSTRAINT class_pk PRIMARY KEY (class_name)
 );
 
 -- Table: class_list
@@ -95,14 +95,14 @@ CREATE TABLE word_list (
     list_id int NOT NULL
 );
 
--- foreign keys
+--foreign keys
 -- Reference: class_language_foreign (table: class)
---ALTER TABLE class ADD CONSTRAINT class_language_foreign FOREIGN KEY class_language_foreign (language_foreign_id)
---    REFERENCES language_foreign (id);
---
----- Reference: class_language_origin (table: class)
---ALTER TABLE class ADD CONSTRAINT class_language_origin FOREIGN KEY class_language_origin (language_origin_id)
---    REFERENCES language_origin (id);
+ALTER TABLE class ADD CONSTRAINT class_language_foreign FOREIGN KEY class_language_foreign (language_foreign_id)
+    REFERENCES language_foreign (id);
+
+-- Reference: class_language_origin (table: class)
+ALTER TABLE class ADD CONSTRAINT class_language_origin FOREIGN KEY class_language_origin (language_origin_id)
+    REFERENCES language_origin (id);
 --
 ---- Reference: class_list_class (table: class_list)
 --ALTER TABLE class_list ADD CONSTRAINT class_list_class FOREIGN KEY class_list_class (class_id)

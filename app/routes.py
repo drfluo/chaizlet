@@ -88,7 +88,7 @@ def ex1():
             'author': {'username': 'Rambo'},
             'body': 'Beautiful day in Geneva!'
         },
-        {
+      {
             'author': {'username': 'Susan'},
             'body': 'The Avengers movie was so cool!'
         },
