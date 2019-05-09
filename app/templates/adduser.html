@@ -21,11 +21,12 @@
 			<input type="password" placeholder="Password" name="password" value="{{ request.form.password }}">
 			</div>
 			<div class="form-group">
-                        <input type="number" placeholder="donnestonroletocard" name="role" value="{{ request.form.role }}">
-                        </div>
-
-
-
+			<select name="role">
+  				<option value="0">Admin</option>
+  				<option value="1">Professeur</option>
+  				<option value="2">Elève</option>
+			</select> 
+			</div>
 			<button class="btn btn-primary" type="submit">Add User</button>
 		</form>
 		{% if error %}

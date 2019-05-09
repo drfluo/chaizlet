@@ -4,7 +4,7 @@
 -- tables
 -- Table: class
 CREATE TABLE class (
-    -- id int NOT NULL,
+   --  id int NOT NULL,
     class_name varchar(64) NOT NULL,
     language_foreign_id int NOT NULL,
     language_origin_id int NOT NULL,

@@ -6,12 +6,12 @@
       		<br>
 		<table class="table">
 		<thead>
-			<tr><td><strong>First name</strong></td><td><strong>Last name</strong></td><td><strong>Email</strong></td></tr>
+		<tr><td><strong>First name</strong></td><td><strong>Last name</strong></td><td><strong>Email</strong></td><td><strong>Role</td></strong></tr>
 		</thead>
 		<tbody>
     		{% for user in users %}
 		<tr>
-			<td>{{ user.first_name }}</td><td>{{ user.last_name }}</td><td>{{ user.email }}</td>
+			<td>{{ user.first_name }}</td><td>{{ user.last_name }}</td><td>{{ user.email }}</td><td>{{ user.role_id }}</td>
 		</tr>
     		{% endfor %}
 		</tbody>

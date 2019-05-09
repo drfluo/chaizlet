@@ -42,8 +42,8 @@ def add_user():
             email = request.form['email']
             username = request.form['username']
             passwd = request.form['password']
-	    role_id = request.form['role_id']
-            if firstname is None or lastname is None or email is None or username is None or passwd is None or role_id is None:
+	    role = request.form['role']
+            if firstname is None or lastname is None or email is None or username is None or passwd is None or role is None:
                 error = 'All fields are mandatory.'
             else:
                 passwd_hash = hash_sha1(passwd) 
