@@ -128,18 +128,30 @@ def add_class():
     title="MyApp - Add a new class"
     error = None
     msg = None
+    db = get_db()
     if session['username']:
         if request.method=='POST':
             class_name = request.form['classname']
-            language_foreign_id = request.form['languageforeignid']
-            language_origin_id = request.form['languageoriginid']
-            if class_name is None or language_foreign_id is None or language_origin_id is None:
+            foreign = request.form['languageforeignid']
+            origin = request.form['languageoriginid']
+            if class_name is None or foreign is None or origin is None:
                error = 'All fields are mandatory.'
             else:
-                db = get_db()
                 db.add_class(class_name, language_foreign_id, language_origin_id)
                 msg = 'User was successfully added!'
-        return render_template('addclass.html', title=title, msg=msg, error=error)
+	langs = db.query("SELECT * FROM language")
+        return render_template('addclass.html', title=title, langs=langs, msg=msg, error=error)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/classes')
+def classes():
+    title="Chaizlet - List classes"
+    if session['username']:
+        db = get_db()
+        users = db.query("SELECT * from class")
+        return render_template('classes.html', title=title, classes=classes)
     else:
         return redirect(url_for('login'))
 	
