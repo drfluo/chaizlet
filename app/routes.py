@@ -138,9 +138,9 @@ def add_class():
                error = 'All fields are mandatory.'
             else:
                 db.add_class(class_name, language_foreign_id, language_origin_id)
-                msg = 'User was successfully added!'
-	langs = db.query("SELECT * FROM language")
-        return render_template('addclass.html', title=title, langs=langs, msg=msg, error=error)
+                msg = 'Class was successfully added!'
+	languages = db.query("SELECT * FROM language")
+        return render_template('addclass.html', title=title, languages=languages, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
 

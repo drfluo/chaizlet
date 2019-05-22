@@ -17,33 +17,33 @@ CREATE TABLE class_list (
 );
 
 -- Table: language
-CREATE TABLE lang (
+CREATE TABLE language (
     id INTEGER PRIMARY KEY,
-    name varchar(19) NOT NULL,
+    name varchar(19) NOT NULL
 );
 
 -- Table: list
 CREATE TABLE list (
     id INTEGER PRIMARY KEY,
-    list_name varchar(128) NOT NULL,
+    list_name varchar(128) NOT NULL
 );
 
 -- Table: photo
 CREATE TABLE photo (
     ln_letter char(1) NOT NULL,
-    picture blob NOT NULL,
+    picture blob NOT NULL
 );
 
 -- Table: role
 CREATE TABLE role (
     id INTEGER PRIMARY KEY,
-    name varchar(16) NOT NULL,
+    name varchar(16) NOT NULL
 );
 
 -- Table: translation
 CREATE TABLE translation (
     id INTEGER PRIMARY KEY,
-    word varchar(128) NOT NULL,
+    word varchar(128) NOT NULL
 );
 
 -- Table: translation_word
@@ -72,7 +72,7 @@ CREATE TABLE user_class (
 -- Table: word
 CREATE TABLE word (
     id int NOT NULL,
-    word_origin varchar(128) NOT NULL,
+    word_origin varchar(128) NOT NULL
 );
 
 -- Table: word_list
@@ -96,12 +96,5 @@ INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id)
 
 -- language
 
-INSERT INTO lang (name) 
+INSERT INTO language (name) 
 	VALUES ("francais");
-INSERT INTO lang (name)    
-        VALUES ("allemand");
-INSERT INTO lang (name)    
-        VALUES ("anglais");
-
-
-
