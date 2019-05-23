@@ -103,10 +103,6 @@ def ex1():
     ]
     return render_template('ex1.html', title=title, user=user, posts=posts)
     
-    
-    
-    
-    
 @app.route('/ex2')
 def ex2():
 	title = "My App - Example 2"
@@ -132,9 +128,9 @@ def add_class():
     if session['username']:
         if request.method=='POST':
             class_name = request.form['classname']
-            foreign = request.form['languageforeignid']
-            origin = request.form['languageoriginid']
-            if class_name is None or foreign is None or origin is None:
+            language_foreign_id = request.form['foreign']
+            language_origin_id = request.form['origin']
+            if class_name is None or language_foreign_id is None or language_origin_id is None:
                error = 'All fields are mandatory.'
             else:
                 db.add_class(class_name, language_foreign_id, language_origin_id)
@@ -150,8 +146,28 @@ def classes():
     title="Chaizlet - List classes"
     if session['username']:
         db = get_db()
-        users = db.query("SELECT * from class")
+        classes = db.query("SELECT * from class")
         return render_template('classes.html', title=title, classes=classes)
+    else:
+        return redirect(url_for('login'))
+
+
+@app.route('/addlanguages', methods=['POST', 'GET'])
+def add_languages():
+    title="MyApp - Add a new language"
+    error = None
+    msg = None
+    db = get_db()
+    if session['username']:
+        if request.method=='POST':
+            name = request.form['newl']
+            if name is None:
+               error = 'All fields are mandatory.'
+            else:
+                db.add_language(name)
+                msg = 'Language was successfully added!'
+        languages = db.query("SELECT * FROM language")
+        return render_template('addlanguages.html', title=title, languages=languages, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
 	
