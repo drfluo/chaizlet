@@ -6,6 +6,7 @@ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 python get-pip.py --user 
 pip install virtualenv --user
 
+mac damien : cd /Users/alexiarupp/git/chaizlet
 cd /home/eleve/Documents/
 mkdir projet
 virtualenv .env
@@ -81,7 +82,7 @@ vi app/route.py
 
 
 
-JE L'AI MODIFIÉ !!!
+JE L'AI MODIFIï¿½ !!!
 
 
 ```
@@ -90,7 +91,7 @@ JE L'AI MODIFIÉ !!!
 
 download Heroku CIL en WIndows 64
 
-installé Heroku CIL
+installï¿½ Heroku CIL
 
 ouvert cmd
 

@@ -9,7 +9,7 @@
                 <tr><td><strong>Nom de la classe</strong></td><td><strong>langue maternelle</strong></td><td><strong>langue etrangère</strong></td>
                 </thead>
                 <tbody>
-                {% for class in classes %}
+                {% for classes in class %}
                 <tr>
                         <td>{{ class.class_name }}</td><td>{{ class.language_origin_id }}</td><td>{{ class.language_foreign_id }}</td>
                 </tr>
