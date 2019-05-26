@@ -20,10 +20,21 @@
 	
 			{% if session['username'] %}
 			<a href="/logout">Logout</a>
-			(Logged as <strong>{{ session['username'] }}</strong>) 
-		{% else %} 
+			(Logged as <strong>{{ session['username'] }}</strong>)
+			{% for users in user %}
+				{% if user.role_id == 0 %}
+				(admin)
+				{% endif %}
+				{% if user.role_id == 1 %}
+                                (prof)	
+				{% endif %}
+				{% if user.role_id == 2 %}
+				(élève)
+				{% endif %}
+			{% endfor %}
+			{% else %} 
 			<a href="/login">Login</a>  
-		{% endif %}
+			{% endif %}
 		</div><hr>
 
         {% block content %}{% endblock %}

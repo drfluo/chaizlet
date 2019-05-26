@@ -81,6 +81,8 @@ CREATE TABLE word_list (
     list_id int NOT NULL
 );
 
+-- user
+
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
 	VALUES ("Pouet", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "Polli", "polli.laureline@destael.educanet2.ch", 1);
 
