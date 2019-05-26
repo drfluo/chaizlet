@@ -76,6 +76,9 @@ class db_handler:
         """
         self.edit('INSERT INTO class (class_name, language_foreign_id, language_origin_id) VALUES (?,?,?)', (class_name, language_foreign_id, language_origin_id,))
 
+'''
 
    def add_languages(self, name):
-	self.edit('INSERT INTO language (name) VALUES (?)', (name,)) 
+	self.edit('INSERT INTO language (name) VALUES (?)', (name,))
+
+''' 

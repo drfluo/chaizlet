@@ -98,3 +98,12 @@ INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id)
 
 INSERT INTO language (name) 
 	VALUES ("francais");
+
+INSERT INTO language (name)
+        VALUES ("russe");
+
+INSERT INTO language (name)
+       VALUES ("anglais");
+
+INSERT INTO language (name)
+	VALUES ("mandarin simplifié");

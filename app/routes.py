@@ -152,6 +152,19 @@ def classes():
         return redirect(url_for('login'))
 
 
+@app.route('/languages')
+def languages():
+    title="Chaizlet - List languages"
+    if session['username']:
+        db = get_db()
+        languages = db.query("SELECT * from language")
+        return render_template('languages.html', title=title, languages=languages)
+    else:
+        return redirect(url_for('login'))
+
+
+
+
 @app.route('/addlanguages', methods=['POST', 'GET'])
 def add_languages():
     title="MyApp - Add a new language"

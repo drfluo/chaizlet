@@ -1,0 +1,25 @@
+
+
+{% extends "base.html" %}
+  
+{% block content %}
+        <div class="container">
+                <h1>List of Languages</h1>
+                <br>
+                <table class="table">
+                <thead>
+                <tr><td><strong>Nom de la langue</strong></td>
+                </thead>
+                <tbody>
+                {% for language in languages %}
+                <tr>
+                        <td>{{ language.name }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+{% endblock %}
+
+
+
