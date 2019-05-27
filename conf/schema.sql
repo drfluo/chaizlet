@@ -109,3 +109,8 @@ INSERT INTO language (name)
 
 INSERT INTO language (name)
 	VALUES ("mandarin simplifié");
+
+-- class
+
+INSERT INTO class (class_name, language_foreign_id, language_origin_id)
+	VALUES ("Alpha-Mike", "francais", "russe");
