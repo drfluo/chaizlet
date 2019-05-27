@@ -6,8 +6,8 @@
 CREATE TABLE class (
     id INTEGER PRIMARY KEY,
     class_name varchar(64) NOT NULL,
-    language_foreign_id int NOT NULL,
-    language_origin_id int NOT NULL
+    language_foreign_id varchar(20) NOT NULL,
+    language_origin_id varchar(20) NOT NULL
 );
 
 -- Table: class_list
@@ -18,8 +18,7 @@ CREATE TABLE class_list (
 
 -- Table: language
 CREATE TABLE language (
-    id INTEGER PRIMARY KEY,
-    name varchar(19) NOT NULL
+    name varchar(19) PRIMARY KEY
 );
 
 -- Table: list
