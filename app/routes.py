@@ -22,13 +22,11 @@ def index():
 
 @app.route('/users')
 def users():
-    title="MyApp - List users"
-    if session['username']:
-        db = get_db()
-        users = db.query("SELECT * from user")
-        return render_template('users.html', title=title, users=users)
-    else:
-        return redirect(url_for('login'))
+	title="MyApp - List users"
+	db = get_db()
+	users = db.query("SELECT * from user")
+	return render_template('users.html', title=title, users=users)
+
 
 @app.route('/adduser', methods=['POST', 'GET'])
 def add_user():
@@ -143,24 +141,18 @@ def add_class():
 
 @app.route('/classes')
 def classes():
-    title="Chaizlet - List classes"
-    if session['username']:
-        db = get_db()
-        classes = db.query("SELECT * from class")
-        return render_template('classes.html', title=title, classes=classes)
-    else:
-        return redirect(url_for('login'))
+	title="Chaizlet - List classes"
+	db = get_db()
+	classes = db.query("SELECT * from class")
+	return render_template('classes.html', title=title, classes=classes)
 
 
 @app.route('/languages')
 def languages():
-    title="Chaizlet - List languages"
-    if session['username']:
-        db = get_db()
-        languages = db.query("SELECT * from language")
-        return render_template('languages.html', title=title, languages=languages)
-    else:
-        return redirect(url_for('login'))
+	title="Chaizlet - List languages"
+	db = get_db()
+	languages = db.query("SELECT * from language")
+	return render_template('languages.html', title=title, languages=languages)
 
 
 
