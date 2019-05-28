@@ -19,19 +19,22 @@
 				<a href="/languages">Languages</a> |	
 	
 			{% if session['username'] %}
-			<a href="/logout">Logout</a>
-			(Logged as <strong>{{ session['username'] }}</strong>)
-			{% for users in user %}
-				{% if user.role_id == 0 %}
-				(admin)
-				{% endif %}
-				{% if user.role_id == 1 %}
-                                (prof)	
-				{% endif %}
-				{% if user.role_id == 2 %}
-				(élève)
-				{% endif %}
-			{% endfor %}
+				<a href="/logout">Logout</a>
+				(Logged as <strong>{{ session['username'] }}</strong>
+
+					{% for users in user %}
+						{% if user.role_id == 'Admin' %}
+						(admin)
+						{% endif %}
+						{% if user.role_id == 'Professeur' %}
+                        	        	(prof)	
+						{% endif %}
+						{% if user.role_id == 'Eleve' %}
+						(élève)
+						{% endif %}
+					{% endfor %}
+				)
+
 			{% else %} 
 			<a href="/login">Login</a>  
 			{% endif %}

@@ -35,8 +35,8 @@ CREATE TABLE photo (
 
 -- Table: role
 CREATE TABLE role (
-    id INTEGER PRIMARY KEY,
-    name varchar(16) NOT NULL
+    name varchar(16) PRIMARY KEY
+
 );
 
 -- Table: translation
@@ -59,7 +59,7 @@ CREATE TABLE user (
     username varchar(64) NOT NULL,
     email varchar(666) NOT NULL,
     passwd_hash varchar(255) NOT NULL,
-    role_id int NOT NULL
+    role_id varchar(18) NOT NULL
 );
 
 -- Table: user_class
@@ -83,16 +83,16 @@ CREATE TABLE word_list (
 -- user
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("Pouet", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "Polli", "polli.laureline@destael.educanet2.ch", 1);
+	VALUES ("Pouet", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "Polli", "polli.laureline@destael.educanet2.ch", "Admin");
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("RaptorDelta999", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "Rupp", "rupp.damien@destael.educanet2.ch", 1);
+	VALUES ("RaptorDelta999", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "Rupp", "rupp.damien@destael.educanet2.ch", "Professeur");
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("LAURELINE", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "POLLI", "lpolli2001@gmail.com", 2);
+	VALUES ("LAURELINE", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "POLLI", "lpolli2001@gmail.com", "Elève");
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("DAMIEN.R", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "RUPP", "drupp2001@gmail.com", 2);
+	VALUES ("DAMIEN.R", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "RUPP", "drupp2001@gmail.com", "Elève");
 
 
 -- language
@@ -108,6 +108,10 @@ INSERT INTO language (name)
 
 INSERT INTO language (name)
 	VALUES ("mandarin simplifié");
+
+INSERT INTO language (name)
+        VALUES ("Dothraki");
+
 
 -- class
 
