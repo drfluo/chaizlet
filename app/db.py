@@ -64,6 +64,14 @@ class db_handler:
         rd = self.query('SELECT passwd_hash FROM user WHERE username=?', (username,), one=True)
         return rd['passwd_hash'] if rd else None
 
+    def get_user_role_id(self, username):
+        """
+            Get user role_id
+        """
+        rd = self.query('SELECT role_id FROM user WHERE username=?', (username,), one=True)
+        return rd['role_id'] if rd else None
+
+
     def add_user(self, username, passwd_hash, firstname, lastname, email, role_id):
         """
             Add a new user

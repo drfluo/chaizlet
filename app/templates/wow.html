@@ -1,0 +1,20 @@
+{% extends "lol.html" %}
+  
+{% block content %}
+        <div class="container">
+                <h1>List of words</h1>
+                <br>
+                <table class="table">
+                <thead>
+                <tr><td><strong>name of the list</strong></td>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                <tr>
+                        <td> {{ user.first_name }} </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+{% endblock %}

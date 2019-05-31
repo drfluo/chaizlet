@@ -11,13 +11,10 @@
                 <tbody>
                 {% for class in classes %}
                 <tr>
-                        <td>{{ class.class_name }}</td><td>{{ class.language_origin_id }}</td><td>{{ class.language_foreign_id }}</td>
+                        <td> <a href="/lol">  {{ class.class_name }} </td><td>{{ class.language_origin_id }}</td><td>{{ class.language_foreign_id }}</td>
                 </tr>
 	               {% endfor %}
                 </tbody>
                 </table>
         </div>
 {% endblock %}
-
-
-

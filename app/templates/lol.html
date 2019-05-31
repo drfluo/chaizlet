@@ -1,0 +1,21 @@
+{% extends "classes.html" %}
+ 
+{% block content %}
+        <div class="container">
+                <h1>List of Lists</h1>
+                <br>
+                <table class="table">
+                <thead>
+                <tr><td><strong>name of the list</strong></td>
+                </thead>
+                <tbody>
+                {% for class in classes %}
+                <tr>
+                        <td> <a href="/wow" target = "_blank"> {{ class.class_name }} </a>  </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+        </div>
+{% endblock %}
+

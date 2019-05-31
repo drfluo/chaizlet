@@ -17,29 +17,16 @@
 		    		 <a href="/users">Users</a> |
 	  	   		 <a href="/classes">Classes</a> | 
 				<a href="/languages">Languages</a> |	
-	
 			{% if session['username'] %}
 				<a href="/logout">Logout</a>
-				(Logged as <strong>{{ session['username'] }}</strong>
-
-					{% for users in user %}
-						{% if user.role_id == 'Admin' %}
-						(admin)
-						{% endif %}
-						{% if user.role_id == 'Professeur' %}
-                        	        	(prof)	
-						{% endif %}
-						{% if user.role_id == 'Eleve' %}
-						(élève)
-						{% endif %}
-					{% endfor %}
-				)
-
-			{% else %} 
-			<a href="/login">Login</a>  
+				(Logged as <strong> {{ session['username'] }}</strong>)
+			{% else %}
+				<a href="/login">Login</a>  
 			{% endif %}
 		</div><hr>
 
-        {% block content %}{% endblock %}
+        {% block content %}
+	{% endblock %}
+
     </body>
 </html>

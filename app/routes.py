@@ -61,11 +61,10 @@ def login():
         password = request.form['password']
         hashed_password = hash_sha1(password) 
         db = get_db()
-	# custom query
         stored_password = db.get_user_password(username)
         if stored_password != hashed_password:
-            error = 'Invalid Credentials. Please try again.'
-        else:
+            error = 'Apprend a te login !'
+	else:
             session['username'] = username
             return redirect(url_for('index'))
     return render_template('login.html', title=title, error=error)
@@ -175,4 +174,18 @@ def add_languages():
         return render_template('addlanguages.html', title=title, languages=languages, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
-	
+
+
+@app.route('/lol')
+def lol():
+        title="Chaizlet - List of lists"
+        db = get_db()
+        classes = db.query("SELECT * from class")
+        return render_template('lol.html', title=title, classes=classes)
+
+@app.route('/wow')
+def wow():
+        title="MyApp - Worlds of words"
+        db = get_db()
+        users = db.query("SELECT * from user")
+        return render_template('wow.html', title=title, users=users)	
