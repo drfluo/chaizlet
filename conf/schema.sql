@@ -54,10 +54,9 @@ CREATE TABLE translation_word (
 
 -- Table: user
 CREATE TABLE user (
-    id INTEGER PRIMARY KEY,
     first_name varchar(64) NOT NULL,
     last_name varchar(64) NOT NULL,
-    username varchar(64) NOT NULL,
+    username varchar(64) PRIMARY KEY,
     email varchar(666) NOT NULL,
     passwd_hash varchar(255) NOT NULL,
     role_id varchar(18) NOT NULL

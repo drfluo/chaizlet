@@ -24,7 +24,7 @@ def index():
 def users():
 	title="MyApp - List users"
 	db = get_db()
-	users = db.query("SELECT *, UPPER(last_name) FROM user ORDER BY role_id")
+	users = db.query("SELECT *,  UPPER(last_name) as last_name FROM user ORDER BY role_id")
 	return render_template('users.html', title=title, users=users)
 
 
@@ -43,11 +43,14 @@ def add_user():
 	    role = request.form['role']
             if firstname is None or lastname is None or email is None or username is None or passwd is None or role is None:
                 error = 'All fields are mandatory.'
-            else:
-                passwd_hash = hash_sha1(passwd) 
-                db = get_db()
-                db.add_user(username, passwd_hash, firstname, lastname, email, role)
-                msg = 'User was successfully added!'
+	    else:
+		try:
+			passwd_hash = hash_sha1(passwd)
+			db = get_db()
+			db.add_user(username, passwd_hash, firstname, lastname, email, role)
+			msg = 'user was successfully added!'
+		except:
+			error = 'user already exists'
         return render_template('adduser.html', title=title, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
@@ -150,16 +153,17 @@ def classes():
 		classes = db.query("SELECT * FROM class")
 	elif role == [{'role_id': u'Professeur'}]:
 		classes = db.query("SELECT * from class where prof_id = "+username)
+		if classes is None:
+			return redirect(url_for('add_class'))
 	else:
 		classes = db.query("SELECT * from class")
 	return render_template('classes.html', title=title, classes=classes)
-
 
 @app.route('/languages')
 def languages():
 	title="Chaizlet - List languages"
 	db = get_db()
-	languages = db.query("SELECT * from language")
+	languages = db.query("SELECT LOWER(name) as name from language ORDER BY name COLLATE NOCASE")
 	return render_template('languages.html', title=title, languages=languages)
 
 
@@ -177,9 +181,11 @@ def add_languages():
             if name is None:
                error = 'All fields are mandatory.'
             else:
-                db.add_language(name)
-                msg = 'Language was successfully added!'
-        languages = db.query("SELECT * FROM language")
+		try:
+	                db.add_language(name)
+	                msg = 'Language was successfully added!'
+		except:
+			error = 'language already exists'
         return render_template('addlanguages.html', title=title, languages=languages, msg=msg, error=error)
     else:
         return redirect(url_for('login'))
