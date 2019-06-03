@@ -6,12 +6,14 @@
                 <br>
                 <table class="table">
                 <thead>
-                <tr><td><strong>Nom de la classe</strong></td><td><strong>langue maternelle</strong></td><td><strong>langue etrangère</strong></td>
+                <tr>
+			<td><strong>Nom de la classe</strong></td><td><strong>langue maternelle</strong></td><td><strong>langue etrangère</strong></td> <td><strong>profs</strong></td>
+		</tr>
                 </thead>
                 <tbody>
                 {% for class in classes %}
                 <tr>
-                        <td> <a href="/lol">  {{ class.class_name }} </td><td>{{ class.language_origin_id }}</td><td>{{ class.language_foreign_id }}</td>
+                        <td> <a href="/lol">  {{ class.class_name }} </td><td>{{ class.language_origin_id }}</td><td>{{ class.language_foreign_id }}</td> <td>{{ class.prof_id}} </td>
                 </tr>
 	               {% endfor %}
                 </tbody>

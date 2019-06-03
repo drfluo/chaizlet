@@ -24,7 +24,7 @@ def index():
 def users():
 	title="MyApp - List users"
 	db = get_db()
-	users = db.query("SELECT * from user")
+	users = db.query("SELECT *, UPPER(last_name) FROM user ORDER BY role_id")
 	return render_template('users.html', title=title, users=users)
 
 
@@ -85,7 +85,7 @@ def ex1():
             'author': {'username': 'Rambo'},
             'body': 'Beautiful day in Geneva!'
         },
-      {
+        {
             'author': {'username': 'Susan'},
             'body': 'The Avengers movie was so cool!'
         },
@@ -127,10 +127,11 @@ def add_class():
             class_name = request.form['classname']
             language_foreign_id = request.form['foreign']
             language_origin_id = request.form['origin']
+	    username = session['username']
             if class_name is None or language_foreign_id is None or language_origin_id is None:
                error = 'All fields are mandatory.'
             else:
-                db.add_class(class_name, language_foreign_id, language_origin_id)
+                db.add_class(class_name, language_foreign_id, language_origin_id, username)
                 msg = 'Class was successfully added!'
 	languages = db.query("SELECT * FROM language")
         return render_template('addclass.html', title=title, languages=languages, msg=msg, error=error)
@@ -141,8 +142,16 @@ def add_class():
 @app.route('/classes')
 def classes():
 	title="Chaizlet - List classes"
+	username = "'"+session['username']+"'"
 	db = get_db()
-	classes = db.query("SELECT * from class")
+	role = db.query("SELECT role_id FROM user WHERE username = "+username)
+	print(role)
+	if role == [{'role_id': u'Admin'}] :
+		classes = db.query("SELECT * FROM class")
+	elif role == [{'role_id': u'Professeur'}]:
+		classes = db.query("SELECT * from class where prof_id = "+username)
+	else:
+		classes = db.query("SELECT * from class")
 	return render_template('classes.html', title=title, classes=classes)
 
 

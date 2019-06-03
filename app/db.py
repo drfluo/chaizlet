@@ -78,11 +78,11 @@ class db_handler:
         """
         self.edit('INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) VALUES (?,?,?,?,?,?)', (username, passwd_hash, firstname, lastname, email, role_id,))
     
-    def add_class(self, class_name, language_foreign_id, language_origin_id):
+    def add_class(self, class_name, language_foreign_id, language_origin_id, prof_id):
         """
             Add a new class
         """
-        self.edit('INSERT INTO class (class_name, language_foreign_id, language_origin_id) VALUES (?,?,?)', (class_name, language_foreign_id, language_origin_id,))
+        self.edit('INSERT INTO class (class_name, language_foreign_id, language_origin_id, prof_id) VALUES (?,?,?,?)', (class_name, language_foreign_id, language_origin_id, prof_id,))
 
     def add_language(self, name):
 		

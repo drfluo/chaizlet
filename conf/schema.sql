@@ -7,7 +7,8 @@ CREATE TABLE class (
     id INTEGER PRIMARY KEY,
     class_name varchar(64) NOT NULL,
     language_foreign_id varchar(20) NOT NULL,
-    language_origin_id varchar(20) NOT NULL
+    language_origin_id varchar(20) NOT NULL,
+    prof_id varchar(20) NOT NULL
 );
 
 -- Table: class_list
@@ -115,5 +116,5 @@ INSERT INTO language (name)
 
 -- class
 
-INSERT INTO class (class_name, language_foreign_id, language_origin_id)
-	VALUES ("Alpha-Mike", "francais", "russe");
+INSERT INTO class (class_name, language_foreign_id, language_origin_id, prof_id)
+	VALUES ("Alpha-Mike", "francais", "russe", "Pouet");
