@@ -4,18 +4,26 @@
         <div class="container">
                 <h1>List of Lists</h1>
                 <br>
-                <table class="table">
+		<table class="table">
                 <thead>
-                <tr><td><strong>name of the list</strong></td>
+		<tr><td><strong>list of the eleves</strong></td>
                 </thead>
                 <tbody>
-                {% for class in classes %}
-                <tr>
-                        <td> <a href="/wow" target = "_blank"> {{ class.class_name }} </a>  </td>
-                </tr>
-                {% endfor %}
+                {% for eleve in eleves %}
+
+			<tr><td>{{ eleve.username }}</td></tr>
+		{% endfor %}
+		</tbody>
+		<br>
+		<table class="table">
+                <thead>
+                <tr><td><strong>name of list</strong></td>
+                </thead>
+                <tbody>
+                {% for list in lists %}
+                        <tr><td> <a href= "/wow" target="_blank"> {{ list.list_name }} </a> </td></tr>
+		{% endfor %}
                 </tbody>
                 </table>
         </div>
 {% endblock %}
-

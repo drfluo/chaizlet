@@ -142,7 +142,16 @@ def add_class():
         return redirect(url_for('login'))
 
 
-@app.route('/classes')
+
+
+
+
+
+
+
+
+
+@app.route('/classes', methods=['POST', 'GET'])
 def classes():
 	title="Chaizlet - List classes"
 	username = "'"+session['username']+"'"
@@ -159,13 +168,41 @@ def classes():
 		classes = db.query("SELECT * from class")
 	return render_template('classes.html', title=title, classes=classes)
 
+
+@app.route('/lol')
+def lol():
+        title="Chaizlet - List of lists"
+        db = get_db()
+	lists = db.query("SELECT list_name FROM list, class_list WHERE list_id = id AND class_id = 1")
+	eleves = db.query("SELECT username FROM user_class WHERE class_id = 1")
+        print(lists)
+	print(eleves)
+        return render_template('lol.html', title=title, lists=lists, eleves=eleves)
+
+
+@app.route('/wow')
+def wow():
+        title="MyApp - Worlds of words"
+        db = get_db()
+        users = db.query("SELECT * from user")
+        return render_template('wow.html', title=title, users=users)
+
+
+
+
+
+
+
+
+
+
+
 @app.route('/languages')
 def languages():
 	title="Chaizlet - List languages"
 	db = get_db()
 	languages = db.query("SELECT LOWER(name) as name from language ORDER BY name COLLATE NOCASE")
 	return render_template('languages.html', title=title, languages=languages)
-
 
 
 
@@ -190,17 +227,3 @@ def add_languages():
     else:
         return redirect(url_for('login'))
 
-
-@app.route('/lol')
-def lol():
-        title="Chaizlet - List of lists"
-        db = get_db()
-        classes = db.query("SELECT * from class")
-        return render_template('lol.html', title=title, classes=classes)
-
-@app.route('/wow')
-def wow():
-        title="MyApp - Worlds of words"
-        db = get_db()
-        users = db.query("SELECT * from user")
-        return render_template('wow.html', title=title, users=users)	

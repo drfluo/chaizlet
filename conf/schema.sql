@@ -43,7 +43,7 @@ CREATE TABLE role (
 -- Table: translation
 CREATE TABLE translation (
     id INTEGER PRIMARY KEY,
-    word varchar(128) NOT NULL
+    word_foreign varchar(128) NOT NULL
 );
 
 -- Table: translation_word
@@ -64,7 +64,7 @@ CREATE TABLE user (
 
 -- Table: user_class
 CREATE TABLE user_class (
-    user_id int NOT NULL,
+    username varchar(64) NOT NULL,
     class_id int NOT NULL
 );
 
@@ -117,3 +117,42 @@ INSERT INTO language (name)
 
 INSERT INTO class (class_name, language_foreign_id, language_origin_id, prof_id)
 	VALUES ("Alpha-Mike", "francais", "russe", "Pouet");
+
+-- class-user
+
+INSERT INTO user_class (username, class_id)
+		VALUES ("LAURELINE", 1);
+
+
+INSERT INTO user_class (username, class_id)
+                VALUES ("DAMIEN.R", 1);
+
+-- class-list
+
+INSERT INTO class_list (list_id, class_id)
+		VALUES (1, 1);
+
+-- list
+
+INSERT INTO list (id, list_name)
+		VALUES (1, "champ lexical de la mer");
+
+-- word-list
+
+INSERT INTO word_list (word_id, list_id)
+		VALUES (1, 1);
+
+-- translation_word
+
+INSERT INTO translation_word (translation_id, word_id)
+		VALUES (1, 1);
+
+-- word
+
+INSERT INTO word (id, word_origin)
+                VALUES (1, "podvodnaya lodka");
+
+-- translation 
+
+INSERT INTO translation (id, word_foreign)
+		VALUES (1, "sous-marin")
