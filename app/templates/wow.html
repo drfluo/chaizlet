@@ -6,12 +6,12 @@
                 <br>
                 <table class="table">
                 <thead>
-                <tr><td><strong>name of the list</strong></td>
+                <tr><td><strong>origin language</strong></td><td><strong>foreign language</strong></td>
                 </thead>
                 <tbody>
-                {% for user in users %}
+                {% for word in words %}
                 <tr>
-                        <td> {{ user.first_name }} </td>
+                        <td> {{ word.word_origin }} </td> <td> {{ word.word_foreign }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>

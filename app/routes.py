@@ -184,8 +184,9 @@ def lol():
 def wow():
         title="MyApp - Worlds of words"
         db = get_db()
-        users = db.query("SELECT * from user")
-        return render_template('wow.html', title=title, users=users)
+	words = db.query("SELECT word_origin, word_foreign FROM translation_word, word, translation, list")
+	print(words)
+        return render_template('wow.html', title=title, words=words)
 
 
 

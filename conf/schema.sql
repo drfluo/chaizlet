@@ -130,29 +130,56 @@ INSERT INTO user_class (username, class_id)
 -- class-list
 
 INSERT INTO class_list (list_id, class_id)
-		VALUES (1, 1);
-
+		VALUES
+			(1, 1),
+			(2, 1),
+			(3, 1);
 -- list
 
 INSERT INTO list (id, list_name)
 		VALUES (1, "champ lexical de la mer");
+
+INSERT INTO list (id, list_name)
+                VALUES (2, "champ lexical des animaux");
 
 -- word-list
 
 INSERT INTO word_list (word_id, list_id)
 		VALUES (1, 1);
 
+INSERT INTO word_list (word_id, list_id)
+                VALUES (2, 2);
+
+INSERT INTO word_list (word_id, list_id)
+                VALUES (3, 2);
+
 -- translation_word
 
 INSERT INTO translation_word (translation_id, word_id)
 		VALUES (1, 1);
 
+INSERT INTO translation_word (translation_id, word_id)
+		VALUES (2, 2);
+
+INSERT INTO translation_word (translation_id, word_id)
+                VALUES (3, 3);
 -- word
 
 INSERT INTO word (id, word_origin)
                 VALUES (1, "podvodnaya lodka");
 
+INSERT INTO word (id, word_origin)
+                VALUES (2, "horse");
+
+INSERT INTO word (id, word_origin)
+                VALUES (3, "sea turtle");
 -- translation 
 
 INSERT INTO translation (id, word_foreign)
-		VALUES (1, "sous-marin")
+		VALUES (1, "sous-marin");
+
+INSERT INTO translation (id, word_foreign)
+                VALUES (2, "cheval");
+
+INSERT INTO translation (id, word_foreign)
+                VALUES (3, "morskaya cherepakha")
