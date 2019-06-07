@@ -114,7 +114,7 @@ def ex2():
 		},
 		{
 			'parleur': {'username': 'Damien'},
-			'mot': 'C est impossible ... :('
+			'mot': 'Cest impossible ... :('
 		}
 	]
 	return render_template('ex2.html', title=title, user=user, messages=messages)
@@ -124,22 +124,28 @@ def add_class():
     title="MyApp - Add a new class"
     error = None
     msg = None
+    username = "'"+session['username']+"'"
     db = get_db()
-    if session['username']:
-        if request.method=='POST':
-            class_name = request.form['classname']
-            language_foreign_id = request.form['foreign']
-            language_origin_id = request.form['origin']
-	    username = session['username']
-            if class_name is None or language_foreign_id is None or language_origin_id is None:
-               error = 'All fields are mandatory.'
-            else:
-                db.add_class(class_name, language_foreign_id, language_origin_id, username)
-                msg = 'Class was successfully added!'
-	languages = db.query("SELECT * FROM language")
-        return render_template('addclass.html', title=title, languages=languages, msg=msg, error=error)
+    role = db.query("SELECT role_id FROM user WHERE username = "+username)
+    print(role)
+    if role == [{'role_id': u'Eleve'}]:
+                return redirect(url_for('class'))
     else:
-        return redirect(url_for('login'))
+		if session['username']:
+	        	if request.method=='POST':
+	            		class_name = request.form['classname']
+	            		language_foreign_id = request.form['foreign']
+	            		language_origin_id = request.form['origin']
+		    		username = session['username']
+	            		if class_name is None or language_foreign_id is None or language_origin_id is None:
+	            			error = 'All fields are mandatory.'
+	            	else:
+	                		db.add_class(class_name, language_foreign_id, language_origin_id, username)
+	                		msg = 'Class was successfully added!'
+					languages = db.query("SELECT * FROM language")
+	        			return render_template('addclass.html', title=title, languages=languages, msg=msg, error=error)
+ 		else:
+ 			       return redirect(url_for('login'))
 
 
 
@@ -173,7 +179,7 @@ def classes():
 def lol():
         title="Chaizlet - List of lists"
         db = get_db()
-	lists = db.query("SELECT list_name FROM list, class_list WHERE list_id = id AND class_id = 1")
+	lists = db.query("SELECT list_name FROM list, class_list WHERE list_id = list_id_fk_cl AND class_id_fk_cl = 1")
 	eleves = db.query("SELECT username FROM user_class WHERE class_id = 1")
         print(lists)
 	print(eleves)
@@ -182,11 +188,32 @@ def lol():
 
 @app.route('/wow')
 def wow():
-        title="MyApp - Worlds of words"
         db = get_db()
-	words = db.query("SELECT word_origin, word_foreign FROM translation_word, word, translation, list")
+	title = db.query("SELECT list_name FROM list WHERE list_id = 2")
+	words = db.query("""
+				SELECT *
+				FROM list, word_list, word, translation_word, translation 
+				WHERE list_id = 2
+				AND list_id_fk_wl = list_id
+				AND translation_id = translation_id_fk_tw
+				AND word_id = word_id_fk_wl
+				AND word_id = word_id_fk_tw""")
+	foreign = db.query("""
+                                SELECT language_foreign_id
+                                FROM list, class_list, class
+				WHERE list_id = 2
+                                AND list_id_fk_cl = list_id
+                                AND class_id_fk_cl = class_id""")
+	origin = db.query("""
+                                SELECT language_origin_id
+                                FROM list, class_list, class
+                                WHERE list_id = 2
+                                AND list_id_fk_cl = list_id
+                                AND class_id_fk_cl = class_id""")
+	print(title)		
 	print(words)
-        return render_template('wow.html', title=title, words=words)
+	print(origin)
+        return render_template('wow.html', title=title, words=words, origin=origin, foreign=foreign)
 
 
 

@@ -7,19 +7,16 @@
     	<body>
 		    <div><a href="/">Home</a> | 
 			{% if session['username'] %}
-			<a href="/adduser">Add User</a> | 
-			<a href="/addclass">Add Class</a> |
-			<a href="/addlanguages">Add Language</a> |
-			<a href="/ex1">Ex 1</a> |
-			<a href="/ex2">Ex 2</a> |	
-			{% endif %} 
-
-		    		 <a href="/users">Users</a> |
-	  	   		 <a href="/classes">Classes</a> | 
-				<a href="/languages">Languages</a> |	
-			{% if session['username'] %}
-				<a href="/logout">Logout</a>
-				(Logged as <strong> {{ session['username'] }}</strong>)
+				<a href="/adduser">Add User</a> | 
+				<a href="/addclass">Add Class</a> |
+				<a href="/addlanguages">Add Language</a> |
+				<a href="/ex1">Ex 1</a> |
+				<a href="/ex2">Ex 2</a> |	
+			    	<a href="/users">Users</a> |
+		  	   	<a href="/classes">Classes</a> | 
+			        <a href="/languages">Languages</a> |	
+					<a href="/logout">Logout</a>
+					(Logged as <strong> {{ session['username'] }}</strong>)
 			{% else %}
 				<a href="/login">Login</a>  
 			{% endif %}

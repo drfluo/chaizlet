@@ -2,14 +2,20 @@
   
 {% block content %}
         <div class="container">
-                <h1>List of words</h1>
+		{% for title in title %}
+                <h1> {{title.list_name}} </h1>
+		{% endfor %}
                 <br>
                 <table class="table">
                 <thead>
-                <tr><td><strong>origin language</strong></td><td><strong>foreign language</strong></td>
+		{% for origin in origin %}
+		{% for foreign in foreign %}
+                <tr><td><strong> {{ origin.language_origin_id }} </strong></td><td><strong> {{ foreign.language_foreign_id }}</strong></td>
+		{% endfor %}
+		{% endfor %}
                 </thead>
                 <tbody>
-                {% for word in words %}
+		{% for word in words %}
                 <tr>
                         <td> {{ word.word_origin }} </td> <td> {{ word.word_foreign }}</td>
                 </tr>
