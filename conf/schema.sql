@@ -130,6 +130,7 @@ INSERT INTO user_class (username, class_id)
 INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl)
 		VALUES
 			(1, 1),
+			(2, 2),
 			(2, 1);
 -- list
 

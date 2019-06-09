@@ -180,25 +180,22 @@ def lol():
 	lists = db.query("SELECT list_name FROM list, class_list WHERE list_id = list_id_fk_cl AND class_id_fk_cl = 1")
 	eleves = db.query("SELECT username FROM user_class WHERE class_id = 1")
 	alllist = db.query("SELECT * FROM list")
-	print(alllist)
         return render_template('lol.html', title=title, lists=lists, eleves=eleves)
 
 
 @app.route('/wow', methods=['POST', 'GET'])
 def wow():
 	if request.method=='GET':
-	        _id = request.values.get('nomliste')
-		print(_id)
+	        _nmliste ="'"+request.values.get('nomliste')+"'"
+		print(_nmliste)
         db = get_db()
-	title = db.query("SELECT list_name FROM list WHERE list_id = 1")
-	words = db.query("""
-				SELECT *
-				FROM list, word_list, word, translation_word, translation 
-				WHERE list_id = 2
-				AND list_id_fk_wl = list_id
-				AND translation_id = translation_id_fk_tw
-				AND word_id = word_id_fk_wl
-				AND word_id = word_id_fk_tw""")
+	title = db.query("SELECT list_name FROM list WHERE list_name =" +_nmliste)
+	l_id = db.query("SELECT list_id FROM list WHERE list_name =" +_nmliste)
+	lid = None
+	for row in l_id:
+		lid = row['list_id'] 
+	words = db.query("SELECT * FROM list, word_list, word, translation_word, translation WHERE list_id_fk_wl = list_id AND translation_id = translation_id_fk_tw AND word_id = word_id_fk_wl AND word_id = word_id_fk_tw AND list_name =" +_nmliste) 
+	print(words)
 	foreign = db.query("""
                                 SELECT language_foreign_id
                                 FROM list, class_list, class
@@ -211,9 +208,6 @@ def wow():
                                 WHERE list_id = 2
                                 AND list_id_fk_cl = list_id
                                 AND class_id_fk_cl = class_id""")
-	print(title)		
-	print(words)
-	print(origin)
         return render_template('wow.html', title=title, words=words, origin=origin, foreign=foreign)
 
 
