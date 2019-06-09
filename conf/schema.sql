@@ -4,7 +4,7 @@
 -- tables
 -- Table: class
 CREATE TABLE class (
-    class_id INTEGER PRIMARY KEY,
+    class_id INTEGER PRIMARY KEY AUTOINCREMENT,
     class_name varchar(64) NOT NULL,
     language_foreign_id varchar(20) NOT NULL,
     language_origin_id varchar(20) NOT NULL,
@@ -24,7 +24,7 @@ CREATE TABLE language (
 
 -- Table: list
 CREATE TABLE list (
-    list_id INTEGER PRIMARY KEY,
+    list_id INTEGER PRIMARY KEY AUTOINCREMENT,
     list_name varchar(128) NOT NULL
 );
 
@@ -115,8 +115,8 @@ INSERT INTO language (name)
 
 -- class
 
-INSERT INTO class (class_name, language_foreign_id, language_origin_id, prof_id)
-	VALUES ("Alpha-Mike", "francais", "russe", "Pouet");
+INSERT INTO class (class_id, class_name, language_foreign_id, language_origin_id, prof_id)
+	VALUES (1, "Alpha-Mike", "francais", "russe", "Pouet");
 
 -- class-user
 

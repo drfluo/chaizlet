@@ -88,3 +88,11 @@ class db_handler:
 		
         self.edit('INSERT INTO language (name) VALUES (?)', (name,))
 
+
+    def add_list(self, list_name):
+	self.edit('INSERT INTO list (list_name) VALUES (?)', (list_name,))
+
+
+
+    def link_cl(list_id_fk_cl, class_id_fk_cl):
+	self.edit('INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl) VALUES (?,?)', (list_id_fk_cl, class_id_fk_cl,))

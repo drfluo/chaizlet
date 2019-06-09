@@ -121,31 +121,29 @@ def ex2():
 
 @app.route('/addclass', methods=['POST', 'GET'])
 def add_class():
-    title="MyApp - Add a new class"
-    error = None
-    msg = None
-    username = "'"+session['username']+"'"
-    db = get_db()
-    role = db.query("SELECT role_id FROM user WHERE username = "+username)
-    print(role)
-    if role == [{'role_id': u'Eleve'}]:
-                return redirect(url_for('class'))
-    else:
-		if session['username']:
-	        	if request.method=='POST':
-	            		class_name = request.form['classname']
-	            		language_foreign_id = request.form['foreign']
-	            		language_origin_id = request.form['origin']
-		    		username = session['username']
-	            		if class_name is None or language_foreign_id is None or language_origin_id is None:
-	            			error = 'All fields are mandatory.'
-	            	else:
-	                		db.add_class(class_name, language_foreign_id, language_origin_id, username)
-	                		msg = 'Class was successfully added!'
-					languages = db.query("SELECT * FROM language")
-	        			return render_template('addclass.html', title=title, languages=languages, msg=msg, error=error)
- 		else:
- 			       return redirect(url_for('login'))
+	title="MyApp - Add a new class"
+	error = None
+	msg = None
+	db = get_db()
+	'''		'''	
+	CLAS = db.query("SELECT * FROM class")
+	print(CLAS)
+	'''		'''
+	languages = db.query("SELECT * FROM language")
+	if session['username']:
+		if request.method=='POST':
+			class_name = request.form['classname']
+			language_foreign_id = request.form['foreign']
+			language_origin_id = request.form['origin']
+			username = session['username']
+			if class_name is None or language_foreign_id is None or language_origin_id is None:
+				error = 'All fields are mandatory.'
+	           	else:
+				db.add_class(class_name, language_foreign_id, language_origin_id, username)
+				msg = 'Class was successfully added!'
+		return render_template('addclass.html', title=title, languages=languages, msg=msg, error=error)
+ 	else:
+		return redirect(url_for('login'))
 
 
 
@@ -181,8 +179,8 @@ def lol():
         db = get_db()
 	lists = db.query("SELECT list_name FROM list, class_list WHERE list_id = list_id_fk_cl AND class_id_fk_cl = 1")
 	eleves = db.query("SELECT username FROM user_class WHERE class_id = 1")
-        print(lists)
-	print(eleves)
+	alllist = db.query("SELECT * FROM list")
+	print(alllist)
         return render_template('lol.html', title=title, lists=lists, eleves=eleves)
 
 
@@ -240,6 +238,8 @@ def add_languages():
     error = None
     msg = None
     db = get_db()
+    langues = db.query("SELECT * FROM language")
+    print(langues)
     if session['username']:
         if request.method=='POST':
             name = request.form['newl']
@@ -255,3 +255,37 @@ def add_languages():
     else:
         return redirect(url_for('login'))
 
+
+@app.route('/addlist', methods=['POST', 'GET'])
+def add_list():
+	title="MyApp - Add a new list"
+	error = None
+	msg = None
+	db = get_db()
+	username = "'"+session['username']+"'"
+	role = db.query("SELECT role_id FROM user WHERE username = "+username)
+	classes = db.query("SELECT * FROM class WHERE prof_id = "+username)
+	if session['username']:
+		if role == [{'role_id': u'El\xe8ve'}]:
+			return redirect(url_for('index'))
+		else:
+			if request.method=='POST':
+				listname = "'"+request.form['list']+"'"
+				classname = "'"+request.form['class_name']+"'"
+				class_id_fk_cl = db.query("SELECT class_id FROM class WHERE class_name = "+classname)
+				print(class_id_fk_cl)
+				print(listname)
+				if listname is None or classname is None:
+					error = 'All fields are mandatory.'
+				else:
+					try:
+						db.add_list(listname)
+						l = db.query("SELECT * FROM list WHERE list_name ="+listname)
+						print(l)
+						''' db.link_cl(list_id_fk_cl, class_id_fk_cl)'''
+						msg = 'List was successfully added!'
+					except:
+						error = 'list already exists'
+			return render_template('addlist.html', title=title, classes=classes, msg=msg, error=error)
+	else:
+		return redirect(url_for('login'))
