@@ -64,8 +64,8 @@ CREATE TABLE user (
 
 -- Table: user_class
 CREATE TABLE user_class (
-    username varchar(64) NOT NULL,
-    class_id int NOT NULL
+    username_fk_uc varchar(64) NOT NULL,
+    class_id_fk_uc int NOT NULL
 );
 
 -- Table: word
@@ -120,8 +120,9 @@ INSERT INTO class (class_id, class_name, language_foreign_id, language_origin_id
 
 -- class-user
 
-INSERT INTO user_class (username, class_id)
+INSERT INTO user_class (username_fk_uc, class_id_fk_uc)
 		VALUES 
+			("LAURELINE", 2),
 			("LAURELINE", 1),
 			("DAMIEN.R", 1);
 
@@ -130,7 +131,6 @@ INSERT INTO user_class (username, class_id)
 INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl)
 		VALUES
 			(1, 1),
-			(2, 2),
 			(2, 1);
 -- list
 
@@ -145,7 +145,8 @@ INSERT INTO word_list (word_id_fk_wl, list_id_fk_wl)
 		VALUES 
 			(1, 1),
 			(2, 2),
-			(3, 2);
+			(3, 2),
+			(4, 3);
 
 -- translation_word
 
@@ -153,18 +154,21 @@ INSERT INTO translation_word (translation_id_fk_tw, word_id_fk_tw)
 		VALUES 
 			(1, 1),
 			(2, 2),
-                	(3, 3);
+                	(3, 3),
+			(4, 4);
 -- word
 
 INSERT INTO word (word_id, word_origin)
 		VALUES
                 	(1, "podvodnaya lodka"),
                 	(2, "loshad'"),
-                	(3, "morskaya cherepakha");
+                	(3, "morskaya cherepakha"),
+			(4, "dog");
 -- translation 
 
 INSERT INTO translation (translation_id, word_foreign)
 		VALUES 
 			(1, "sous-marin"),
          	        (2, "cheval"),
-         	        (3, "tortue de mer")
+         	        (3, "tortue de mer"),
+			(4, "chien")

@@ -5,5 +5,8 @@
 		<h1>Welcome <b>{% if session['username'] %} {{ session['username'] }} {% else %} Guest {% endif %}</b>!</h1>
       		<br>
     		<div><p>This is my first Flask app :-)</p></div>
+	        {% if error %}
+                	<p class="error"><strong>Error:</strong> {{ error }}</p>
+		{% endif %}	
 	</div>
 {% endblock %}

@@ -17,6 +17,7 @@ def teardown_db(exception):
 @app.route('/')
 @app.route('/index')
 def index():
+    error = None
     title="MyApp - Welcome!"
     return render_template('index.html', title=title)
 
@@ -157,8 +158,10 @@ def add_class():
 
 @app.route('/classes', methods=['POST', 'GET'])
 def classes():
+	title2="MyApp - Welcome!"
 	title="Chaizlet - List classes"
 	username = "'"+session['username']+"'"
+	error = None
 	db = get_db()
 	role = db.query("SELECT role_id FROM user WHERE username = "+username)
 	print(role)
@@ -169,17 +172,27 @@ def classes():
 		if classes is None:
 			return redirect(url_for('add_class'))
 	else:
-		classes = db.query("SELECT * from class")
+		classes = db.query("SELECT * FROM class, user_class WHERE class_id = class_id_fk_uc AND username_fk_uc =" +username)
+		if classes is None:
+			error = 'rien a faire la'
+			return render_template('index.html', title2=title2, error=error)
 	return render_template('classes.html', title=title, classes=classes)
 
 
-@app.route('/lol')
+
+
+
+
+
+@app.route('/lol', methods=['POST', 'GET'])
 def lol():
+	if request.method=='GET':
+        	_nmclasse ="'"+request.values.get('nomclass')+"'"
+		print(_nmclasse)
         title="Chaizlet - List of lists"
         db = get_db()
-	lists = db.query("SELECT list_name FROM list, class_list WHERE list_id = list_id_fk_cl AND class_id_fk_cl = 1")
-	eleves = db.query("SELECT username FROM user_class WHERE class_id = 1")
-	alllist = db.query("SELECT * FROM list")
+	lists = db.query("SELECT list_name FROM list, class_list, class  WHERE list_id = list_id_fk_cl AND class_id = class_id_fk_cl AND class_name =" +_nmclasse)
+	eleves = db.query("SELECT username FROM user_class, class, user WHERE class_id = class_id_fk_uc AND username_fk_uc = username AND class_name =" +_nmclasse)
         return render_template('lol.html', title=title, lists=lists, eleves=eleves)
 
 
@@ -187,27 +200,11 @@ def lol():
 def wow():
 	if request.method=='GET':
 	        _nmliste ="'"+request.values.get('nomliste')+"'"
-		print(_nmliste)
         db = get_db()
 	title = db.query("SELECT list_name FROM list WHERE list_name =" +_nmliste)
-	l_id = db.query("SELECT list_id FROM list WHERE list_name =" +_nmliste)
-	lid = None
-	for row in l_id:
-		lid = row['list_id'] 
 	words = db.query("SELECT * FROM list, word_list, word, translation_word, translation WHERE list_id_fk_wl = list_id AND translation_id = translation_id_fk_tw AND word_id = word_id_fk_wl AND word_id = word_id_fk_tw AND list_name =" +_nmliste) 
-	print(words)
-	foreign = db.query("""
-                                SELECT language_foreign_id
-                                FROM list, class_list, class
-				WHERE list_id = 2
-                                AND list_id_fk_cl = list_id
-                                AND class_id_fk_cl = class_id""")
-	origin = db.query("""
-                                SELECT language_origin_id
-                                FROM list, class_list, class
-                                WHERE list_id = 2
-                                AND list_id_fk_cl = list_id
-                                AND class_id_fk_cl = class_id""")
+	foreign = db.query("SELECT language_foreign_id FROM list, class_list, class WHERE list_id_fk_cl = list_id AND class_id_fk_cl = class_id AND list_name ="+_nmliste)
+	origin = db.query("SELECT language_origin_id FROM list, class_list, class WHERE list_id_fk_cl = list_id AND class_id_fk_cl = class_id AND list_name ="+_nmliste)
         return render_template('wow.html', title=title, words=words, origin=origin, foreign=foreign)
 
 
