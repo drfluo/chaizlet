@@ -94,5 +94,5 @@ class db_handler:
 
 
 
-    def link_cl(list_id_fk_cl, class_id_fk_cl):
+    def link_cl(self, list_id_fk_cl, class_id_fk_cl):
 	self.edit('INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl) VALUES (?,?)', (list_id_fk_cl, class_id_fk_cl,))

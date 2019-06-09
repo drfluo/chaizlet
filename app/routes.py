@@ -184,10 +184,13 @@ def lol():
         return render_template('lol.html', title=title, lists=lists, eleves=eleves)
 
 
-@app.route('/wow')
+@app.route('/wow', methods=['POST', 'GET'])
 def wow():
+	if request.method=='GET':
+	        _id = request.values.get('nomliste')
+		print(_id)
         db = get_db()
-	title = db.query("SELECT list_name FROM list WHERE list_id = 2")
+	title = db.query("SELECT list_name FROM list WHERE list_id = 1")
 	words = db.query("""
 				SELECT *
 				FROM list, word_list, word, translation_word, translation 
@@ -262,27 +265,36 @@ def add_list():
 	error = None
 	msg = None
 	db = get_db()
+	cl = db.query("SELECT * FROM class_list")	
+	print(cl)
 	username = "'"+session['username']+"'"
 	role = db.query("SELECT role_id FROM user WHERE username = "+username)
 	classes = db.query("SELECT * FROM class WHERE prof_id = "+username)
+	list = db.query("SELECT * FROM list")
+	print(list)
 	if session['username']:
 		if role == [{'role_id': u'El\xe8ve'}]:
 			return redirect(url_for('index'))
 		else:
 			if request.method=='POST':
-				listname = "'"+request.form['list']+"'"
+				listname = request.form['list']
 				classname = "'"+request.form['class_name']+"'"
-				class_id_fk_cl = db.query("SELECT class_id FROM class WHERE class_name = "+classname)
-				print(class_id_fk_cl)
-				print(listname)
 				if listname is None or classname is None:
 					error = 'All fields are mandatory.'
 				else:
 					try:
 						db.add_list(listname)
-						l = db.query("SELECT * FROM list WHERE list_name ="+listname)
-						print(l)
-						''' db.link_cl(list_id_fk_cl, class_id_fk_cl)'''
+        		                        class_id_fk_cl = db.query("SELECT class_id FROM class WHERE class_name = "+classname)
+						list_id_fk_cl = db.query("SELECT list_id FROM list WHERE list_name ="+"'" +listname +"'")
+						cifc = None
+						lifc = None
+						for row in list_id_fk_cl:
+							lifc = row['list_id']
+						for row in  class_id_fk_cl: 
+							cifc = row['class_id']
+						print(lifc)
+						print(cifc)
+						db.link_cl(lifc, cifc)
 						msg = 'List was successfully added!'
 					except:
 						error = 'list already exists'
