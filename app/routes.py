@@ -126,10 +126,6 @@ def add_class():
 	error = None
 	msg = None
 	db = get_db()
-	'''		'''	
-	CLAS = db.query("SELECT * FROM class")
-	print(CLAS)
-	'''		'''
 	languages = db.query("SELECT * FROM language")
 	if session['username']:
 		if request.method=='POST':
@@ -174,7 +170,7 @@ def classes():
 	else:
 		classes = db.query("SELECT * FROM class, user_class WHERE class_id = class_id_fk_uc AND username_fk_uc =" +username)
 		if classes is None:
-			error = 'rien a faire la'
+			error = 'vous n avez pas de classe'
 			return render_template('index.html', title2=title2, error=error)
 	return render_template('classes.html', title=title, classes=classes)
 
@@ -292,3 +288,57 @@ def add_list():
 			return render_template('addlist.html', title=title, classes=classes, msg=msg, error=error)
 	else:
 		return redirect(url_for('login'))
+
+
+@app.route('/addword', methods=['POST', 'GET'])
+def add_word():
+        title="MyApp - Add a new word"
+        title2="MyApp - Welcome!"
+        error = None
+        msg = None
+        db = get_db()
+	ori = db.query("SELECT * FROM word")
+	print(ori)
+        username = "'"+session['username']+"'"
+        role = db.query("SELECT role_id FROM user WHERE username = "+username)
+        lists = db.query("SELECT * FROM list")
+	if session['username']:
+		if role == [{'role_id': u'El\xe8ve'}]:
+                        error = 'tu n as pas le droit d aller la'
+                        return render_template('index.html', title2=title2, error=error)
+		else:
+			if request.method=='POST':
+				word_origin = request.form['wo']
+				word_foreign = request.form['we']
+				listname = "'"+request.form['list_name']+"'"
+				if word_origin is None or word_foreign is None or listname is None:
+					error = 'All fields are mandatory.'
+				else:
+					try:
+						db.awo(word_origin)
+						db.awf(word_foreign)
+						list_id_fk_wl = db.query("SELECT list_id FROM list WHERE list_name ="+listname)
+						word_id_fk_wl = db.query("SELECT word_id FROM word WHERE word_origin ="+"'" +word_origin +"'")
+						translation_id_fk_tw = db.query("SELECT translation_id FROM translation WHERE word_foreign ="+"'" +word_foreign +"'" )
+						lifw = None
+						wifw = None
+						tift = None
+                                                for row in translation_id_fk_tw:
+                                                        tift = row['translation_id']
+	
+						for row in list_id_fk_wl:
+                                                        lifw = row['list_id']
+
+						for row in word_id_fk_wl:
+							wifw = row['word_id']
+						print(tift)
+						print(wifw)
+						db.link_tw(tift, wifw)
+						db.link_wl(wifw, lifw)
+						msg = 'words were successfully added!'
+					except:
+						error = 'words already exists'
+			return render_template('addword.html', title=title, lists=lists, msg=msg, error=error)
+	else:
+
+                return redirect(url_for('login'))

@@ -42,7 +42,7 @@ CREATE TABLE role (
 
 -- Table: translation
 CREATE TABLE translation (
-    translation_id INTEGER PRIMARY KEY,
+    translation_id INTEGER PRIMARY KEY AUTOINCREMENT,
     word_foreign varchar(128) NOT NULL
 );
 
@@ -70,7 +70,7 @@ CREATE TABLE user_class (
 
 -- Table: word
 CREATE TABLE word (
-    word_id int NOT NULL,
+    word_id INTEGER PRIMARY KEY AUTOINCREMENT,
     word_origin varchar(128) NOT NULL
 );
 
@@ -131,14 +131,15 @@ INSERT INTO user_class (username_fk_uc, class_id_fk_uc)
 INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl)
 		VALUES
 			(1, 1),
-			(2, 1);
+			(2, 1),
+			(3, 2);
 -- list
 
 INSERT INTO list (list_id, list_name)
 		VALUES 
 			(1, "champ lexical de la mer"),
-			(2, "champ lexical des animaux");
-
+			(2, "champ lexical des animaux"),
+			(3, "animaux");
 -- word-list
 
 INSERT INTO word_list (word_id_fk_wl, list_id_fk_wl)

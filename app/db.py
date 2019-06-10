@@ -93,6 +93,20 @@ class db_handler:
 	self.edit('INSERT INTO list (list_name) VALUES (?)', (list_name,))
 
 
-
     def link_cl(self, list_id_fk_cl, class_id_fk_cl):
 	self.edit('INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl) VALUES (?,?)', (list_id_fk_cl, class_id_fk_cl,))
+
+
+    def awo(self, word_origin):
+	self.edit('INSERT INTO word (word_origin) VALUES (?)', (word_origin,))
+
+    def awf(self, word_foreign):
+        self.edit('INSERT INTO translation (word_foreign) VALUES (?)', (word_foreign,))
+
+    def link_wl(self, word_id_fk_wl, list_id_fk_wl):
+        self.edit('INSERT INTO word_list (word_id_fk_wl, list_id_fk_wl) VALUES (?,?)', (word_id_fk_wl, list_id_fk_wl,))
+
+    def link_tw(self, translation_id_fk_tw, word_id_fk_tw):
+        self.edit('INSERT INTO translation_word (translation_id_fk_tw, word_id_fk_tw) VALUES (?,?)', (translation_id_fk_tw, word_id_fk_tw,))
+
+

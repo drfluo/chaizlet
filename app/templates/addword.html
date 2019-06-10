@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+  
+{% block content %}
+        <div class="container">
+                <h1>Add Word</h1>
+                <br>
+                <form action="" method="post">
+
+                        <div class="form-group">
+                        <input type="text" placeholder="mot origine" name="wo" value={{ request.form.word_origin }}>
+                        </div>
+
+			<div class="form-group">
+                        <input type="text" placeholder="mot etrange" name="we" value={{ request.form.word_foreign }}>
+                        </div>
+
+                        <p> Dans quelle liste : </p>
+
+                        <div class="form-group">
+                                <select name="list_name">
+                                {% for list in lists %}
+                                        <option value="{{ list.list_name }}">{{ list.list_name }}</option>
+                                {% endfor %}
+                                </select>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Add Lists</button>
+                </form>
+                {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}</p>
+                {% endif %}
+                {% if msg %}
+                <p class="msg">{{ msg }}</p>
+                {% endif %}
+        </div>
+{% endblock %}
