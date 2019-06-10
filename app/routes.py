@@ -41,7 +41,7 @@ def add_user():
     if session['username']:
 	if role == [{'role_id': u'El\xe8ve'}]:
 		error = 'tu n as pas le droit d aller la'
-		return render_template('index.html', title2=title2, error=error)
+		return render_template('error.html', error=error)
 	else:
 	        if request.method=='POST':
 	            firstname = request.form['firstname']
@@ -120,7 +120,7 @@ def ex1():
 	    return render_template('ex1.html', title=title, user=user, posts=posts)
 	else:
                  error = 'tu n as pas le droit d aller la'
-                 return render_template('index.html', title2=title2, error=error)
+                 return render_template('error.html', error=error)
     else:
 	    return redirect(url_for('login'))
 
@@ -150,7 +150,7 @@ def ex2():
 			return render_template('ex2.html', title=title, user=user, messages=messages)
 		else:
 			error = 'tu n as pas le droit d aller la'
-			return render_template('index.html', title2=title2, error=error)
+			return render_template('error.html', error=error)
 
 
 
@@ -171,14 +171,14 @@ def add_class():
 	if languages is None:
 		 if role == [{'role_id': u'El\xe8ve'}]:
                         error = 'tu n as pas le droit d aller la'
-                        return render_template('index.html', title2=title2, error=error)
+                        return render_template('error.html', error=error)
                  else:
 			error = 'il n y a pas de langue'
 			return render_template('addlanguages.html', title2=title2, error=error)
 	if session['username']:
 		if role == [{'role_id': u'El\xe8ve'}]:
 			error = 'tu n as pas le droit d aller la'
-			return render_template('index.html', title2=title2, error=error)
+			return render_template('error.html', error=error)
 		else:
 			if request.method=='POST':
 				class_name = request.form['classname']
@@ -223,7 +223,7 @@ def classes():
 		classes = db.query("SELECT * FROM class, user_class WHERE class_id = class_id_fk_uc AND username_fk_uc =" +username)
 		if classes is None:
 			error = 'vous n avez pas de classe'
-			return render_template('index.html', title2=title2, error=error)
+			return render_template('error.html', error=error)
 	return render_template('classes.html', title=title, classes=classes)
 
 
@@ -250,7 +250,7 @@ def lol():
 	if lists is None:
                 if role == [{'role_id': u'El\xe8ve'}]:
                         error = 'il n y a pas de liste dans cette classe'
-                        return render_template('index.html', error=error)
+                        return render_template('error.html', error=error)
 		else:
 			error = 'tu n as pas de liste'
                 	return render_template('addlist.html', error=error)
@@ -274,7 +274,7 @@ def wow():
 	if words is None:
 		 if role == [{'role_id': u'El\xe8ve'}]:
 			error = 'il n y a pas de mots dans cette liste'
-                        return render_template('index.html', error=error)
+                        return render_template('error.html', error=error)
 		 else:
 			error = 'il n y a pas de mots dans cette liste'
 			return render_template('addword.html', error=error)
@@ -304,7 +304,7 @@ def languages():
 	if languages is None:
                 error = 'il n y a pas de langue'
 		if role == [{'role_id': u'El\xe8ve'}]:
-			return render_template('index.html', title2=title2, error=error)
+			return render_template('error.html', title2=title2, error=error)
 		else:
 			return render_template('addlanguages.html', title3=title3, error=error)
 	return render_template('languages.html', title=title, languages=languages)
@@ -324,7 +324,7 @@ def add_languages():
     if session['username']:
 	if role == [{'role_id': u'El\xe8ve'}]:
                 error = 'tu n as pas le droit d aller la'
-		return render_template('index.html', title2=title2, error=error)
+		return render_template('error.html', title2=title2, error=error)
 	else:
 	        if request.method=='POST':
 	            name = request.form['newl']
@@ -356,7 +356,7 @@ def add_list():
 	if classes is None:
 		if role == [{'role_id': u'El\xe8ve'}]:
                         error = 'tu n as pas le droit d aller la'
-                        return render_template('index.html', title2=title2, error=error)
+                        return render_template('error.html', title2=title2, error=error)
                 else:
 			error = 'tu n as pas de classe'
                 	return render_template('addclass.html', title2=title2, error=error)
@@ -407,7 +407,7 @@ def add_word():
         	                return render_template('addlist.html', title2=title2, error=error)
 		elif role == [{'role_id': u'El\xe8ve'}]:
                         error = 'tu n as pas le droit d aller la'
-                        return render_template('index.html', title2=title2, error=error)
+                        return render_template('error.html', title2=title2, error=error)
 		else:
 			lists = db.query("SELECT * FROM class, class_list, list WHERE class_id = class_id_fk_cl AND list_id_fk_cl = list_id AND prof_id ="+username)
 			print(lists)
@@ -465,7 +465,7 @@ def add_eleve():
 	if classes is None:
 		 if role == [{'role_id': u'El\xe8ve'}]:
                         error = 'tu n as pas le droit d aller la'
-                        return render_template('index.html', title2=title2, error=error)
+                        return render_template('error.html', title2=title2, error=error)
 		 else:
 			 error = 'tu n as pas de classe'
                          return render_template('addclass.html', title2=title2, error=error)
