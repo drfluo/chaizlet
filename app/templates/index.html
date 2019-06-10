@@ -1,12 +1,15 @@
 {% extends "base.html" %}
-
 {% block content %}
 	<div class="container">
-		<h1>Welcome <b>{% if session['username'] %} {{ session['username'] }} {% else %} Guest {% endif %}</b>!</h1>
-      		<br>
-    		<div><p>This is my first Flask app :-)</p></div>
-	        {% if error %}
-                	<p class="error"><strong>Error:</strong> {{ error }}</p>
-		{% endif %}	
+
+			<font face="verdana" size="12"><h1><center><div><p>Pas encore inscrit sur chaizlet ? Qu'est-ce que tu attends ?</p></div></center></font></h1>
+			<font size="6"><div align="center">Chaizlet est une app révolutionnaire inaugurant un tout nouveau type de réseau social !</p></div></font>
+			<hr size= 12 color = "black">
+			<br>
+			<font face="verdana" size="4"><div align="right"><b>Grâce à cette nouvelle méthode, plus besoin de flashcards ou de listes ennuyeuses faites à la main !<br> Tu peux tout apprendre depuis ton smartphone !&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></p></div></font></b>
+			<div align="right"><img src="http://assets-news-bcdn-ll.dailyhunt.in/cmd/resize/400x400_60/fetchdata13/images/12/82/1f/12821f4bc07c6693e4b971192d34f11d.jpg" alt="Image apprentissage dans la douleur"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<font face="verdana" size="4"><div align="left"><b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Fait partie de classes pour avoir accès à toutes leurs listes de voc <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tout est disponible en ligne directement !</p></div></font>
+			<div align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://cdn.radiofrance.fr/s3/cruiser-production/2019/04/75360e2c-7a2b-4da0-8c8c-a6b52ba3e0f9/640_000_par8260318.jpg" alt="Image salle de classe"/></div>
+			</body>
 	</div>
 {% endblock %}
