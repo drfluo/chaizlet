@@ -83,18 +83,15 @@ CREATE TABLE word_list (
 -- user
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("Pouet", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "Polli", "polli.laureline@destael.educanet2.ch", "Admin");
+	VALUES ("Admin", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "Polli", "polli.laureline@destael.educanet2.ch", "Admin");
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("RaptorDelta999", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "Rupp", "rupp.damien@destael.educanet2.ch", "Professeur");
+	VALUES ("Professeur", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "Rupp", "rupp.damien@destael.educanet2.ch", "Professeur");
 
 INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("LAURELINE", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "POLLI", "lpolli2001@gmail.com", "Elève");
+	VALUES ("Elève", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Laureline", "POLLI", "lpolli2001@gmail.com", "Elève");
 
-INSERT INTO user (username, passwd_hash, first_name, last_name, email, role_id) 
-	VALUES ("DAMIEN.R", "14b10468a32dbd4d2be8c996930948818cb1ebdb", "Damien", "RUPP", "drupp2001@gmail.com", "Elève");
-
-
+/*
 -- language
 
 INSERT INTO language (name) 
@@ -122,7 +119,6 @@ INSERT INTO class (class_id, class_name, language_foreign_id, language_origin_id
 
 INSERT INTO user_class (username_fk_uc, class_id_fk_uc)
 		VALUES 
-			("LAURELINE", 2),
 			("LAURELINE", 1),
 			("DAMIEN.R", 1);
 
@@ -131,23 +127,20 @@ INSERT INTO user_class (username_fk_uc, class_id_fk_uc)
 INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl)
 		VALUES
 			(1, 1),
-			(2, 1),
-			(3, 2);
+			(2, 1);
 -- list
 
 INSERT INTO list (list_id, list_name)
 		VALUES 
 			(1, "champ lexical de la mer"),
-			(2, "champ lexical des animaux"),
-			(3, "animaux");
+			(2, "champ lexical des animaux");
 -- word-list
 
 INSERT INTO word_list (word_id_fk_wl, list_id_fk_wl)
 		VALUES 
 			(1, 1),
 			(2, 2),
-			(3, 2),
-			(4, 3);
+			(3, 2);
 
 -- translation_word
 
@@ -155,21 +148,19 @@ INSERT INTO translation_word (translation_id_fk_tw, word_id_fk_tw)
 		VALUES 
 			(1, 1),
 			(2, 2),
-                	(3, 3),
-			(4, 4);
+                	(3, 3);
 -- word
 
 INSERT INTO word (word_id, word_origin)
 		VALUES
                 	(1, "podvodnaya lodka"),
                 	(2, "loshad'"),
-                	(3, "morskaya cherepakha"),
-			(4, "dog");
+                	(3, "morskaya cherepakha");
 -- translation 
 
 INSERT INTO translation (translation_id, word_foreign)
 		VALUES 
 			(1, "sous-marin"),
          	        (2, "cheval"),
-         	        (3, "tortue de mer"),
-			(4, "chien")
+         	        (3, "tortue de mer");
+*/

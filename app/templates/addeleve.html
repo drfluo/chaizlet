@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+  
+{% block content %}
+        <div class="container">
+                <h1>Add Eleves To class</h1>
+                <br>
+                <form action="" method="post">
+
+                        <div class="form-group">
+                                <select name="eleve">
+                                {% for eleve in eleves %}
+                                        <option value="{{ eleve.username }}">{{ eleve.username }}</option>
+                                {% endfor %}
+                                </select>
+                        </div>
+
+                        <div class="form-group">
+                                <select name="classe">
+                                {% for class in classes %}
+                                        <option value="{{ class.class_name }}">{{ class.class_name }}</option>
+                                {% endfor %}
+                                </select>
+                        </div>
+
+                        <button class="btn btn-primary" type="submit">Add ELEVE</button>
+                </form>
+
+                {% if error %}
+                <p class="error"><strong>Error:</strong> {{ error }}</p>
+                {% endif %}
+                {% if msg %}
+                <p class="msg">{{ msg }}</p>
+                {% endif %}
+        </div>
+{% endblock %}

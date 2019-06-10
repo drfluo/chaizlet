@@ -109,4 +109,7 @@ class db_handler:
     def link_tw(self, translation_id_fk_tw, word_id_fk_tw):
         self.edit('INSERT INTO translation_word (translation_id_fk_tw, word_id_fk_tw) VALUES (?,?)', (translation_id_fk_tw, word_id_fk_tw,))
 
+    def link_uc(self, username_fk_uc, class_id_fk_uc):
+        self.edit('INSERT INTO user_class (username_fk_uc, class_id_fk_uc) VALUES (?,?)', (username_fk_uc, class_id_fk_uc,))
+
 
