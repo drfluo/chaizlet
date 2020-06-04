@@ -110,3 +110,20 @@ $
 '''
 
 https://bitbucket.org/jimbotonic/m3/src/master
+
+
+
+
+
+### June 2020 - new test
+
+$ sudo apt install curl #télécharge curl
+$ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+$ sudo apt install python3-pip
+$ python3 -m pip install --upgrade pip
+$ python3 -m pip install --user virtualenv
+$ pip3 install flask
+$ sudo apt-get install python3-venv #télécharge env
+$ python3 -m venv env
+$ source env/bin/activate
+pip install flask

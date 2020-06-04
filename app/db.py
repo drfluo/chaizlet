@@ -24,17 +24,17 @@ class db_handler:
             Query the DB
         """
         cur = self.conn.execute(query, args)
-	rd = None
+        rd = None
         if one:
-	    row = cur.fetchone()
-	    if row:
-	    	rd = dict(zip(zip(*cur.description)[0], row)) 
+            row = cur.fetchone()
+            if row:
+                rd = dict(zip(zip(*cur.description)[0], row)) 
         else:
-	    rows = cur.fetchall()
-	    if rows:
-	    	rd = [dict(zip(zip(*cur.description)[0], row)) for row in rows]
-	return rd if rd else None
-    
+            rows = cur.fetchall()
+            if rows:
+                rd = [dict(zip(zip(*cur.description)[0], row)) for row in rows]
+        return rd if rd else None
+        
     def edit(self, query, args=()):
         """
             Insert in the DB
@@ -58,7 +58,7 @@ class db_handler:
             self.conn.close()
     
     def get_user_password(self, username):
-	"""
+        """
 	    Get user password
 	"""
         rd = self.query('SELECT passwd_hash FROM user WHERE username=?', (username,), one=True)
@@ -90,15 +90,15 @@ class db_handler:
 
 
     def add_list(self, list_name):
-	self.edit('INSERT INTO list (list_name) VALUES (?)', (list_name,))
+        self.edit('INSERT INTO list (list_name) VALUES (?)', (list_name,))
 
 
     def link_cl(self, list_id_fk_cl, class_id_fk_cl):
-	self.edit('INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl) VALUES (?,?)', (list_id_fk_cl, class_id_fk_cl,))
+        self.edit('INSERT INTO class_list (list_id_fk_cl, class_id_fk_cl) VALUES (?,?)', (list_id_fk_cl, class_id_fk_cl,))
 
 
     def awo(self, word_origin):
-	self.edit('INSERT INTO word (word_origin) VALUES (?)', (word_origin,))
+        self.edit('INSERT INTO word (word_origin) VALUES (?)', (word_origin,))
 
     def awf(self, word_foreign):
         self.edit('INSERT INTO translation (word_foreign) VALUES (?)', (word_foreign,))
